@@ -1,308 +1,1025 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="New Edge Smoke & Vapes – Premier smoke shop on West Road, Cypress, TX. Premium vape devices, disposable vapes, e-liquids, cigars, CBD products & more." />
+  <meta name="keywords" content="smoke shop, vape, e-liquid, CBD, cigars, Cypress TX, Houston, disposable vapes" />
   <title>New Edge Smoke & Vapes | Cypress, TX</title>
-  <!-- SEO meta -->
-  <meta name="description" content="New Edge Smoke & Vapes: premier smoke shop on West Road, Cypress, TX. Premium vapes, disposables, e-liquids, cigars, CBD, wellness & accessories. Competitive prices, exceptional service.">
-  <meta name="keywords" content="vape shop Cypress, smoke shop Houston, premium vape devices, CBD products, e-liquids, cigars, smoking accessories">
-  <!-- Bootstrap 5 + Icons + primary theme -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Google Font (Inter for modern typography) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet" />
+
   <style>
-    /* custom clean & premium styling */
-    * { font-family: 'Inter', sans-serif; }
-    body { background-color: #fafafc; color: #1e1e2f; scroll-behavior: smooth; }
-    h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
-    h2 { position: relative; display: inline-block; margin-bottom: 1.5rem; }
-    h2:after {
+    /* ════════════════════════════════════════════════
+       VARIABLES
+    ════════════════════════════════════════════════ */
+    :root {
+      --black:   #0a0a0a;
+      --dark:    #111111;
+      --card-bg: #161616;
+      --border:  #252525;
+      --ember:   #e8480a;
+      --ember2:  #ff6b1a;
+      --smoke:   #9ca3af;
+      --white:   #f5f5f0;
+      --ff-head: 'Bebas Neue', sans-serif;
+      --ff-body: 'Barlow', sans-serif;
+    }
+
+    /* ════════════════════════════════════════════════
+       RESET / BASE
+    ════════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--ff-body);
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--ember); border-radius: 3px; }
+
+    /* ════════════════════════════════════════════════
+       NAVBAR
+    ════════════════════════════════════════════════ */
+    #mainNav {
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: background .4s ease, border-color .4s ease, padding .4s ease;
+      padding: 1.2rem 0;
+      z-index: 1000;
+    }
+    #mainNav.scrolled {
+      background: rgba(10,10,10,.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: .7rem 0;
+    }
+    .navbar-brand {
+      font-family: var(--ff-head);
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+      color: var(--white) !important;
+      line-height: 1;
+    }
+    .navbar-brand span { color: var(--ember); }
+    .nav-link {
+      font-family: var(--ff-body);
+      font-weight: 600;
+      font-size: .78rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--smoke) !important;
+      padding: .5rem 1rem !important;
+      transition: color .25s;
+      position: relative;
+    }
+    .nav-link::after {
       content: '';
       position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 70px;
-      height: 3px;
-      background: linear-gradient(90deg, #c6a15b, #b48b45);
-      border-radius: 4px;
+      bottom: 0; left: 1rem; right: 1rem;
+      height: 1px;
+      background: var(--ember);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s ease;
     }
-    .section-padding { padding: 80px 0; }
-    @media (max-width: 768px) { .section-padding { padding: 60px 0; } }
-
-    /* navbar subtle */
-    .navbar {
-      background-color: #ffffffdd !important;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    .nav-link:hover { color: var(--white) !important; }
+    .nav-link:hover::after { transform: scaleX(1); }
+    .navbar-toggler { border-color: var(--ember); }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23e8480a' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
-    .navbar-brand { font-weight: 700; color: #1e1e2f; letter-spacing: -0.01em; }
-    .nav-link { font-weight: 500; color: #2e2e3a; transition: 0.2s; }
-    .nav-link:hover { color: #b48b45; }
 
-    /* hero carousel */
-    .hero-carousel .carousel-item {
-      height: 85vh; min-height: 600px;
-      background-size: cover;
-      background-position: center 30%;
+    /* ════════════════════════════════════════════════
+       HERO — CUSTOM SLIDER
+       Approach: flex track that translateX-slides.
+       No Bootstrap carousel = no display:block conflict.
+    ════════════════════════════════════════════════ */
+    #hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 640px;
+      overflow: hidden;
     }
-    .carousel-item-1 { background-image: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url('https://images.pexels.com/photos/4283403/pexels-photo-4283403.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); }
-    .carousel-item-2 { background-image: linear-gradient(0deg, rgba(0,0,0,0.45), rgba(0,0,0,0.35)), url('https://images.pexels.com/photos/4283412/pexels-photo-4283412.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); }
-    .carousel-item-3 { background-image: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url('https://images.pexels.com/photos/4327057/pexels-photo-4327057.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); }
-    .carousel-caption {
-      background: rgba(0,0,0,0.2);
-      backdrop-filter: blur(3px);
-      border-radius: 28px;
-      padding: 2rem 3rem;
-      max-width: 700px;
-      margin: 0 auto 3rem;
-      bottom: 20%;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-    .carousel-caption h3 { font-size: 3.2rem; font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
-    .carousel-caption p { font-size: 1.3rem; opacity: 0.95; }
-    .btn-outline-light, .btn-primary { border-radius: 40px; padding: 10px 30px; font-weight: 600; transition: all 0.25s; }
-    .btn-primary { background: #b48b45; border-color: #b48b45; color: #fff; }
-    .btn-primary:hover { background: #9e762f; border-color: #9e762f; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(180,139,69,0.2); }
-    .btn-outline-light:hover { background: #fff; color: #1e1e2f; transform: translateY(-2px); }
 
-    /* about section */
-    .about-icon-list i { color: #b48b45; width: 28px; font-size: 1.3rem; margin-right: 12px; }
-    .about-badge { background: #f3ebe1; color: #7a5c2e; padding: 4px 16px; border-radius: 40px; font-weight: 600; font-size: 0.9rem; display: inline-block; margin-bottom: 1rem; }
-    .img-soft-shadow { border-radius: 28px; box-shadow: 0 20px 40px -10px rgba(0,0,0,0.15); transition: transform 0.4s ease; }
-    .img-soft-shadow:hover { transform: scale(1.01); }
-
-    /* contact & map */
-    .contact-card {
-      background: white; border-radius: 32px; padding: 2rem;
-      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.05);
-      border: 1px solid #f0f0f0;
-      transition: 0.2s;
+    /* Track holds all slides side-by-side */
+    .hero-track {
+      display: flex;
+      width: 300%;   /* 3 slides × 100vw */
       height: 100%;
+      transition: transform .85s cubic-bezier(.77,0,.18,1);
+      will-change: transform;
     }
-    .contact-card:hover { box-shadow: 0 25px 40px -10px rgba(180,139,69,0.15); }
-    .contact-icon { color: #b48b45; font-size: 1.6rem; width: 48px; }
-    .map-container { border-radius: 28px; overflow: hidden; height: 280px; box-shadow: 0 15px 25px -8px rgba(0,0,0,0.1); border: 2px solid #fff; }
-    .map-container iframe { width: 100%; height: 100%; }
 
-    /* footer dark modern */
-    .footer-dark {
-      background: #13131a;
-      color: #b0b0c0;
-      border-top: 1px solid #2a2a35;
+    /* Each slide = 1/3 of track width = 1 viewport width */
+    .hero-slide {
+      position: relative;
+      width: calc(100% / 3);
+      height: 100%;
+      flex-shrink: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
     }
-    .footer-social a {
-      display: inline-flex; align-items: center; justify-content: center;
-      background: #262636; width: 44px; height: 44px; border-radius: 60px;
-      color: #e0e0ea; font-size: 1.4rem; margin: 0 8px 8px 0;
-      transition: 0.2s;
-    }
-    .footer-social a:hover { background: #b48b45; color: #13131a; transform: translateY(-4px); }
-    .footer-bottom { border-top: 1px solid #262636; padding-top: 2rem; margin-top: 2rem; }
-    a { text-decoration: none; }
 
-    /* misc hover / interactive */
-    .list-unstyled li { margin-bottom: 12px; }
+    /* Background layer */
+    .slide-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.06);
+      transition: transform 8s ease;
+      z-index: 0;
+    }
+    .hero-slide.is-active .slide-bg { transform: scale(1); }
+
+    .slide-1 .slide-bg { background: radial-gradient(ellipse at 72% 38%, #3d1500 0%, #0a0a0a 60%), linear-gradient(150deg,#1c0a00,#0a0a0a); }
+    .slide-2 .slide-bg { background: radial-gradient(ellipse at 28% 62%, #1c0c30 0%, #0a0a0a 60%), linear-gradient(150deg,#0e0d1e,#0a0a0a); }
+    .slide-3 .slide-bg { background: radial-gradient(ellipse at 62% 28%, #0e1f12 0%, #0a0a0a 60%), linear-gradient(150deg,#091200,#0a0a0a); }
+
+    /* Decorative rings */
+    .ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(232,72,10,.13);
+      pointer-events: none;
+      z-index: 1;
+      animation: ring-pulse 7s ease-in-out infinite;
+    }
+    .ring-a { width: 640px; height: 640px; top: -120px; right: -120px; }
+    .ring-b { width: 420px; height: 420px; top:   30px; right:   30px; animation-delay: 1.8s; }
+    .ring-c { width: 220px; height: 220px; top:  130px; right:  190px; animation-delay: 3.5s; }
+    @keyframes ring-pulse {
+      0%,100% { opacity:.25; transform:scale(1);    }
+      50%      { opacity:.6;  transform:scale(1.04); }
+    }
+
+    /* Dark gradient overlay */
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(100deg, rgba(10,10,10,.93) 0%, rgba(10,10,10,.72) 45%, rgba(10,10,10,.2) 100%);
+      z-index: 2;
+    }
+
+    /* Content sits above overlay */
+    .slide-body {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      padding-top: 4.5rem; /* clear fixed navbar */
+    }
+
+    /* Text reveal — inactive slides hidden, active fades in */
+    .slide-eyebrow,
+    .slide-title,
+    .slide-sub,
+    .slide-actions {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .hero-slide.is-active .slide-eyebrow { opacity:1; transform:none; transition-delay:.25s; }
+    .hero-slide.is-active .slide-title   { opacity:1; transform:none; transition-delay:.4s;  }
+    .hero-slide.is-active .slide-sub     { opacity:1; transform:none; transition-delay:.55s; }
+    .hero-slide.is-active .slide-actions { opacity:1; transform:none; transition-delay:.7s;  }
+
+    .slide-eyebrow {
+      display: block;
+      font-size: .72rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--ember);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .slide-title {
+      font-family: var(--ff-head);
+      font-size: clamp(3.4rem, 7.5vw, 6.8rem);
+      line-height: .96;
+      letter-spacing: 2px;
+      color: var(--white);
+      margin-bottom: 1.4rem;
+    }
+    .slide-title .accent { color: var(--ember); }
+    .slide-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--smoke);
+      line-height: 1.75;
+      max-width: 480px;
+      margin-bottom: 2.2rem;
+    }
+    .slide-actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+    /* Spinning badge */
+    .hero-badge {
+      position: absolute;
+      right: 7%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 136px;
+      height: 136px;
+      border-radius: 50%;
+      background: var(--ember);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      box-shadow: 0 0 55px rgba(232,72,10,.35);
+      animation: badge-spin 22s linear infinite;
+    }
+    .hero-badge .badge-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: badge-spin 22s linear infinite reverse;
+    }
+    .hero-badge .big   { font-family: var(--ff-head); font-size: 2.3rem; line-height:1; color:#fff; }
+    .hero-badge .small { font-size:.58rem; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,.85); margin-top:2px; }
+    @keyframes badge-spin { to { transform: rotate(360deg); } }
+
+    /* Prev / Next arrows */
+    .hero-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 50px;
+      height: 50px;
+      background: rgba(232,72,10,.15);
+      border: 1px solid var(--ember);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background .3s;
+      user-select: none;
+    }
+    .hero-arrow:hover { background: var(--ember); }
+    .hero-arrow.prev { left: 1.5rem; }
+    .hero-arrow.next { right: 1.5rem; }
+
+    /* Dot indicators */
+    .hero-dots {
+      position: absolute;
+      bottom: 90px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: .6rem;
+      z-index: 10;
+    }
+    .hero-dot {
+      width: 28px;
+      height: 2px;
+      background: rgba(255,255,255,.28);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: background .3s, width .3s;
+    }
+    .hero-dot.is-active { background: var(--ember); width: 48px; }
+
+    /* Product pills bar */
+    .product-pills {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 9;
+      background: rgba(10,10,10,.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-top: 1px solid var(--border);
+    }
+    .pill-item {
+      padding: 1.15rem 1.4rem;
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      transition: background .25s;
+      flex: 1;
+      justify-content: center;
+    }
+    .pill-item:last-child { border-right: none; }
+    .pill-item:hover { background: rgba(232,72,10,.1); }
+    .pill-icon {
+      width: 34px; height: 34px;
+      background: rgba(232,72,10,.14);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ember); font-size: .95rem; flex-shrink: 0;
+    }
+    .pill-label {
+      font-size: .7rem; letter-spacing: 1.8px;
+      text-transform: uppercase; color: var(--smoke);
+      font-weight: 600; white-space: nowrap;
+    }
+
+    /* ════════════════════════════════════════════════
+       BUTTONS
+    ════════════════════════════════════════════════ */
+    .btn-ember {
+      position: relative; overflow: hidden;
+      background: var(--ember); color: var(--white);
+      border: none; font-family: var(--ff-body); font-weight: 600;
+      font-size: .78rem; letter-spacing: 2.5px; text-transform: uppercase;
+      padding: .9rem 2.2rem; border-radius: 0;
+      text-decoration: none; display: inline-block;
+      transition: box-shadow .3s, color .3s;
+      cursor: pointer;
+    }
+    .btn-ember::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--ember2); transform: scaleX(0);
+      transform-origin: left; transition: transform .35s ease;
+    }
+    .btn-ember:hover { color: var(--white); box-shadow: 0 8px 30px rgba(232,72,10,.4); }
+    .btn-ember:hover::before { transform: scaleX(1); }
+    .btn-ember span { position: relative; z-index: 1; }
+
+    .btn-ghost {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,.55);
+      font-family: var(--ff-body); font-weight: 600;
+      font-size: .78rem; letter-spacing: 2.5px; text-transform: uppercase;
+      padding: .9rem 2.2rem; border-radius: 0;
+      text-decoration: none; display: inline-block;
+      transition: background .3s, color .3s, border-color .3s;
+    }
+    .btn-ghost:hover { background: var(--white); color: var(--black); border-color: var(--white); }
+
+    /* ════════════════════════════════════════════════
+       MARQUEE
+    ════════════════════════════════════════════════ */
+    .marquee-strip { background: var(--ember); padding: .7rem 0; overflow: hidden; }
+    .marquee-track {
+      display: flex; gap: 2.8rem;
+      animation: marquee-move 26s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-track span { font-family: var(--ff-head); font-size: .95rem; letter-spacing: 3px; color: var(--white); flex-shrink: 0; }
+    .m-dot { color: rgba(255,255,255,.4); font-size: .45rem; vertical-align: middle; }
+    @keyframes marquee-move { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+
+    /* ════════════════════════════════════════════════
+       SECTIONS BASE
+    ════════════════════════════════════════════════ */
+    section { padding: 7rem 0; }
+    .section-label {
+      display: block; font-size: .7rem; letter-spacing: 5px;
+      text-transform: uppercase; color: var(--ember); font-weight: 600; margin-bottom: .75rem;
+    }
+    .section-title {
+      font-family: var(--ff-head); font-size: clamp(2.4rem, 4.5vw, 4.2rem);
+      letter-spacing: 2px; line-height: 1.02; color: var(--white); margin-bottom: 1.4rem;
+    }
+    .section-title .accent { color: var(--ember); }
+    .divider { width: 55px; height: 2px; background: var(--ember); margin-bottom: 2rem; }
+    .divider.mx-auto { margin-left:auto; margin-right:auto; }
+
+    /* ════════════════════════════════════════════════
+       ABOUT
+    ════════════════════════════════════════════════ */
+    #about { background: var(--dark); }
+    .about-img-box { position: relative; overflow: hidden; line-height: 0; }
+    .about-img-box svg { display: block; width: 100%; }
+    .about-frame {
+      position: absolute; bottom: -18px; right: -18px;
+      width: calc(100% - 28px); height: calc(100% - 28px);
+      border: 1px solid var(--ember); z-index: -1;
+    }
+    .stat-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.4rem; }
+    .stat-chip {
+      background: var(--card-bg); border: 1px solid var(--border);
+      padding: 1.2rem 1.5rem; flex: 1; min-width: 120px;
+      transition: border-color .3s, transform .3s;
+    }
+    .stat-chip:hover { border-color: var(--ember); transform: translateY(-4px); }
+    .stat-num  { font-family: var(--ff-head); font-size: 2.1rem; color: var(--ember); line-height: 1; }
+    .stat-text { font-size: .7rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--smoke); margin-top: .3rem; }
+    .feature-list { list-style: none; padding: 0; margin: 1.5rem 0 2rem; }
+    .feature-list li {
+      padding: .65rem 0; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: .9rem;
+      font-size: .94rem; color: var(--smoke); transition: color .25s;
+    }
+    .feature-list li:last-child { border-bottom: none; }
+    .feature-list li:hover { color: var(--white); }
+    .feature-list .fi { color: var(--ember); font-size: .95rem; flex-shrink: 0; }
+
+    /* ════════════════════════════════════════════════
+       PRODUCTS
+    ════════════════════════════════════════════════ */
+    #products { background: var(--black); }
+    .product-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      padding: 2rem; height: 100%; position: relative; overflow: hidden;
+      transition: border-color .3s, transform .3s;
+    }
+    .product-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--ember); transform: scaleX(0); transform-origin: left;
+      transition: transform .4s ease;
+    }
+    .product-card:hover { border-color: rgba(232,72,10,.4); transform: translateY(-6px); }
+    .product-card:hover::before { transform: scaleX(1); }
+    .pc-num   { position: absolute; top: 1rem; right: 1.5rem; font-family: var(--ff-head); font-size: 4rem; color: rgba(255,255,255,.03); line-height:1; pointer-events:none; }
+    .pc-icon  { font-size: 2.4rem; color: var(--ember); margin-bottom: 1.1rem; display: block; }
+    .pc-title { font-family: var(--ff-head); font-size: 1.55rem; letter-spacing:1px; color: var(--white); margin-bottom: .5rem; }
+    .pc-desc  { font-size: .88rem; color: var(--smoke); line-height: 1.75; }
+
+    /* ════════════════════════════════════════════════
+       WHY US
+    ════════════════════════════════════════════════ */
+    #why { background: var(--dark); }
+    .why-card {
+      display: flex; gap: 1.4rem; padding: 1.7rem;
+      border: 1px solid var(--border); background: var(--card-bg); height: 100%;
+      transition: border-color .3s, transform .3s;
+    }
+    .why-card:hover { border-color: var(--ember); transform: translateX(5px); }
+    .wc-icon {
+      width: 50px; height: 50px;
+      background: rgba(232,72,10,.1); border: 1px solid rgba(232,72,10,.28);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; color: var(--ember); flex-shrink: 0;
+    }
+    .wc-title { font-family: var(--ff-head); font-size: 1.25rem; letter-spacing:1px; color: var(--white); margin-bottom: .35rem; }
+    .wc-desc  { font-size: .87rem; color: var(--smoke); line-height: 1.75; }
+
+    /* ════════════════════════════════════════════════
+       CONTACT
+    ════════════════════════════════════════════════ */
+    #contact { background: var(--black); }
+    .contact-card { background: var(--card-bg); border: 1px solid var(--border); padding: 2.4rem; height: 100%; }
+    .contact-item {
+      display: flex; gap: 1.2rem; padding: 1.3rem 0;
+      border-bottom: 1px solid var(--border); align-items: flex-start;
+    }
+    .contact-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .ci-icon {
+      width: 42px; height: 42px;
+      background: rgba(232,72,10,.1); border: 1px solid rgba(232,72,10,.24);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; color: var(--ember); flex-shrink: 0;
+    }
+    .ci-label { font-size: .67rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--ember); font-weight: 600; margin-bottom: .25rem; }
+    .ci-value { font-size: .93rem; color: var(--white); font-weight: 300; line-height: 1.55; }
+    a.ci-value { text-decoration: none; transition: color .25s; }
+    a.ci-value:hover { color: var(--ember); }
+    .map-wrap { position: relative; overflow: hidden; border: 1px solid var(--border); height: 100%; min-height: 420px; }
+    .map-wrap iframe { display: block; width: 100%; height: 100%; min-height: 420px; border: none; filter: invert(90%) hue-rotate(180deg) brightness(.85) contrast(1.1); }
+    .map-label { position: absolute; top: 1rem; left: 1rem; background: var(--ember); color: var(--white); font-family: var(--ff-head); font-size: .95rem; letter-spacing: 1.5px; padding: .35rem 1rem; z-index: 2; }
+
+    /* ════════════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════════════ */
+    footer { background: #080808; border-top: 1px solid var(--border); padding: 4rem 0 2rem; }
+    .footer-brand { font-family: var(--ff-head); font-size: 2.1rem; letter-spacing: 2px; color: var(--white); }
+    .footer-brand span { color: var(--ember); }
+    .footer-tagline { font-size: .85rem; color: var(--smoke); margin-top: .5rem; }
+    .footer-heading { font-family: var(--ff-head); font-size: 1rem; letter-spacing: 3px; text-transform: uppercase; color: var(--white); margin-bottom: 1.1rem; }
+    .footer-link { display: block; color: var(--smoke); text-decoration: none; font-size: .87rem; padding: .28rem 0; transition: color .25s, padding-left .25s; }
+    .footer-link:hover { color: var(--ember); padding-left: 5px; }
+    .social-row { display: flex; gap: .7rem; margin-top: .5rem; flex-wrap: wrap; }
+    .social-btn {
+      width: 40px; height: 40px; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--smoke); font-size: 1rem; text-decoration: none; transition: all .3s;
+    }
+    .social-btn:hover { background: var(--ember); border-color: var(--ember); color: var(--white); transform: translateY(-3px); }
+    .footer-divider { border-color: var(--border); margin: 2.2rem 0 1.4rem; }
+    .footer-copy { font-size: .77rem; color: #555; letter-spacing: 1px; }
+    .footer-copy a { color: var(--ember); text-decoration: none; }
+
+    /* ════════════════════════════════════════════════
+       SCROLL REVEAL
+    ════════════════════════════════════════════════ */
+    .reveal       { opacity:0; transform:translateY(38px);  transition:opacity .7s ease,transform .7s ease; }
+    .reveal-left  { opacity:0; transform:translateX(-38px); transition:opacity .7s ease,transform .7s ease; }
+    .reveal-right { opacity:0; transform:translateX(38px);  transition:opacity .7s ease,transform .7s ease; }
+    .reveal.visible, .reveal-left.visible, .reveal-right.visible { opacity:1; transform:none; }
+
+    /* ════════════════════════════════════════════════
+       BACK TO TOP
+    ════════════════════════════════════════════════ */
+    #btt {
+      position: fixed; bottom: 2rem; right: 2rem;
+      width: 44px; height: 44px; background: var(--ember); color: var(--white);
+      border: none; cursor: pointer; display: none;
+      align-items: center; justify-content: center;
+      font-size: 1rem; z-index: 999; transition: background .3s, transform .3s;
+    }
+    #btt:hover { background: var(--ember2); transform: translateY(-3px); }
+    #btt.show { display: flex; }
+
+    /* ════════════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════════════ */
+    @media (max-width: 991px) {
+      .hero-badge { display: none !important; }
+      .product-pills { display: none !important; }
+      .hero-dots { bottom: 1.5rem; }
+    }
+    @media (max-width: 767px) {
+      section { padding: 4.5rem 0; }
+      .slide-title { font-size: 3rem; }
+      .about-frame { display: none; }
+      .hero-arrow.prev { left: .6rem; }
+      .hero-arrow.next { right: .6rem; }
+    }
   </style>
 </head>
+
 <body>
-  <!-- navigation / header (clean, sticky) -->
-  <nav class="navbar navbar-expand-lg sticky-top py-3">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        <i class="fas fa-leaf me-2" style="color: #b48b45;"></i>NEW EDGE<span style="font-weight:300;"> smoke & vapes</span>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+
+  <!-- ══════════════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════════════ -->
+  <nav id="mainNav" class="navbar navbar-expand-lg fixed-top">
+    <div class="container-xl">
+      <a class="navbar-brand" href="#">NEW EDGE <span>SMOKE</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
+      <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+        <ul class="navbar-nav gap-1">
           <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="#why">Why Us</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- HERO SECTION: full-width animated slider/carousel -->
-  <section id="hero" class="hero-carousel">
-    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
-        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
-        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
-      </div>
-      <div class="carousel-inner">
-        <!-- slide 1: featured products / disposables -->
-        <div class="carousel-item active carousel-item-1">
-          <div class="carousel-caption d-flex flex-column align-items-start text-start">
-            <h3>Premium disposables</h3>
-            <p class="lead">Top brands • fresh stock • best prices</p>
-            <div class="mt-3">
-              <a href="#contact" class="btn btn-primary me-3">Visit Us Today</a>
-              <a href="#about" class="btn btn-outline-light">View Products</a>
-            </div>
-          </div>
-        </div>
-        <!-- slide 2: cigars & CBD offers -->
-        <div class="carousel-item carousel-item-2">
-          <div class="carousel-caption d-flex flex-column align-items-start text-start">
-            <h3>CBD & wellness</h3>
-            <p class="lead">Premium cigars, oils, gummies & topicals</p>
-            <div class="mt-3">
-              <a href="#contact" class="btn btn-primary me-3">Visit Us Today</a>
-              <a href="#about" class="btn btn-outline-light">View Products</a>
-            </div>
-          </div>
-        </div>
-        <!-- slide 3: e-liquids + accessories -->
-        <div class="carousel-item carousel-item-3">
-          <div class="carousel-caption d-flex flex-column align-items-start text-start">
-            <h3>E-liquids & gear</h3>
-            <p class="lead">Massive flavor selection • expert advice</p>
-            <div class="mt-3">
-              <a href="#contact" class="btn btn-primary me-3">Visit Us Today</a>
-              <a href="#about" class="btn btn-outline-light">View Products</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </button>
-    </div>
-  </section>
+  <!-- ══════════════════════════════════════════════
+       HERO — CUSTOM SLIDER
+  ══════════════════════════════════════════════ -->
+  <div id="hero">
 
-  <!-- ABOUT US SECTION (two-column image + text) -->
-  <section id="about" class="section-padding">
-    <div class="container">
+    <div class="hero-track" id="heroTrack">
+
+      <!-- SLIDE 1 -->
+      <div class="hero-slide slide-1 is-active">
+        <div class="slide-bg"></div>
+        <div class="ring ring-a"></div>
+        <div class="ring ring-b"></div>
+        <div class="ring ring-c"></div>
+        <div class="slide-overlay"></div>
+        <div class="slide-body">
+          <div class="container-xl">
+            <div style="max-width:620px;">
+              <span class="slide-eyebrow">Cypress, TX — West Road</span>
+              <h1 class="slide-title">PREMIUM<br><span class="accent">VAPE</span><br>EXPERIENCE</h1>
+              <p class="slide-sub">Discover the finest selection of vape devices, disposables, and e-liquids from the most trusted brands in the industry.</p>
+              <div class="slide-actions">
+                <a href="#products" class="btn-ember"><span>View Products</span></a>
+                <a href="#contact"  class="btn-ghost">Visit Us Today</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2 -->
+      <div class="hero-slide slide-2">
+        <div class="slide-bg"></div>
+        <div class="ring ring-a" style="border-color:rgba(100,50,200,.13)"></div>
+        <div class="ring ring-b" style="border-color:rgba(100,50,200,.13)"></div>
+        <div class="slide-overlay"></div>
+        <div class="slide-body">
+          <div class="container-xl">
+            <div style="max-width:620px;">
+              <span class="slide-eyebrow">Special Offers — New Arrivals</span>
+              <h1 class="slide-title">CBD &amp;<br><span class="accent">WELLNESS</span><br>ESSENTIALS</h1>
+              <p class="slide-sub">Explore our curated CBD collection and wellness products — naturally sourced, expertly selected for your lifestyle.</p>
+              <div class="slide-actions">
+                <a href="#products" class="btn-ember"><span>Shop CBD</span></a>
+                <a href="#about"    class="btn-ghost">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3 -->
+      <div class="hero-slide slide-3">
+        <div class="slide-bg"></div>
+        <div class="ring ring-a" style="border-color:rgba(50,180,80,.1)"></div>
+        <div class="ring ring-b" style="border-color:rgba(50,180,80,.1)"></div>
+        <div class="slide-overlay"></div>
+        <div class="slide-body">
+          <div class="container-xl">
+            <div style="max-width:620px;">
+              <span class="slide-eyebrow">Premium Selection — Cypress TX</span>
+              <h1 class="slide-title">CIGARS &amp;<br><span class="accent">SMOKING</span><br>ACCESSORIES</h1>
+              <p class="slide-sub">From hand-rolled cigars to premium accessories — find everything you need under one roof at New Edge.</p>
+              <div class="slide-actions">
+                <a href="#contact"  class="btn-ember"><span>Get Directions</span></a>
+                <a href="#products" class="btn-ghost">Our Products</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /hero-track -->
+
+    <!-- Spinning badge -->
+    <div class="hero-badge d-none d-lg-flex">
+      <div class="badge-inner">
+        <span class="big">TOP</span>
+        <span class="small">Rated Shop</span>
+      </div>
+    </div>
+
+    <!-- Arrows -->
+    <button class="hero-arrow prev" id="heroPrev" aria-label="Previous slide"><i class="bi bi-chevron-left"></i></button>
+    <button class="hero-arrow next" id="heroNext" aria-label="Next slide"><i class="bi bi-chevron-right"></i></button>
+
+    <!-- Dots -->
+    <div class="hero-dots">
+      <button class="hero-dot is-active" data-slide="0" aria-label="Slide 1"></button>
+      <button class="hero-dot"           data-slide="1" aria-label="Slide 2"></button>
+      <button class="hero-dot"           data-slide="2" aria-label="Slide 3"></button>
+    </div>
+
+    <!-- Product pills (desktop) -->
+    <div class="product-pills d-none d-lg-block">
+      <div class="container-xl">
+        <div class="d-flex">
+          <div class="pill-item"><span class="pill-icon"><i class="bi bi-cloud-fog2"></i></span><span class="pill-label">Vape Devices</span></div>
+          <div class="pill-item"><span class="pill-icon"><i class="bi bi-battery-charging"></i></span><span class="pill-label">Disposables</span></div>
+          <div class="pill-item"><span class="pill-icon"><i class="bi bi-droplet-fill"></i></span><span class="pill-label">E-Liquids</span></div>
+          <div class="pill-item"><span class="pill-icon"><i class="bi bi-fire"></i></span><span class="pill-label">Cigars</span></div>
+          <div class="pill-item"><span class="pill-icon"><i class="bi bi-flower1"></i></span><span class="pill-label">CBD</span></div>
+          <div class="pill-item"><span class="pill-icon"><i class="bi bi-stars"></i></span><span class="pill-label">Accessories</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /hero -->
+
+
+  <!-- ══════════════════════════════════════════════
+       MARQUEE
+  ══════════════════════════════════════════════ -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <span>PREMIUM VAPES</span><span class="m-dot">●</span>
+      <span>DISPOSABLES</span><span class="m-dot">●</span>
+      <span>E-LIQUIDS</span><span class="m-dot">●</span>
+      <span>CIGARS</span><span class="m-dot">●</span>
+      <span>CBD PRODUCTS</span><span class="m-dot">●</span>
+      <span>WELLNESS</span><span class="m-dot">●</span>
+      <span>ACCESSORIES</span><span class="m-dot">●</span>
+      <span>CYPRESS TX</span><span class="m-dot">●</span>
+      <span>PREMIUM VAPES</span><span class="m-dot">●</span>
+      <span>DISPOSABLES</span><span class="m-dot">●</span>
+      <span>E-LIQUIDS</span><span class="m-dot">●</span>
+      <span>CIGARS</span><span class="m-dot">●</span>
+      <span>CBD PRODUCTS</span><span class="m-dot">●</span>
+      <span>WELLNESS</span><span class="m-dot">●</span>
+      <span>ACCESSORIES</span><span class="m-dot">●</span>
+      <span>CYPRESS TX</span><span class="m-dot">●</span>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════
+       ABOUT
+  ══════════════════════════════════════════════ -->
+  <section id="about">
+    <div class="container-xl">
       <div class="row g-5 align-items-center">
-        <div class="col-lg-6" data-aos="fade-right">
-          <!-- image with subtle hover (stock modern vape shop) -->
-          <img src="https://images.pexels.com/photos/4283390/pexels-photo-4283390.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
-               alt="New Edge Smoke & Vapes interior" class="img-fluid img-soft-shadow" loading="lazy">
-        </div>
-        <div class="col-lg-6">
-          <span class="about-badge"><i class="fas fa-store me-2"></i>WEST ROAD, CYPRESS</span>
-          <h2>Your local smoke & vape destination</h2>
-          <p class="lead fs-6 text-secondary mb-4">New Edge Smoke & Vapes is a premier smoke shop located on West Road in Cypress, Houston, Texas, proudly serving the local community with top-quality products and exceptional customer service.</p>
-          <div class="row mt-4">
-            <div class="col-sm-6">
-              <ul class="list-unstyled about-icon-list">
-                <li><i class="fas fa-fire"></i> Premium vape devices</li>
-                <li><i class="fas fa-bolt"></i> Disposable vapes</li>
-                <li><i class="fas fa-flask"></i> E-liquids</li>
-                <li><i class="fas fa-cigar"></i> Cigars</li>
-              </ul>
+
+        <div class="col-lg-5 reveal-left">
+          <div style="position:relative; z-index:1;">
+            <div class="about-img-box">
+              <svg viewBox="0 0 580 540" xmlns="http://www.w3.org/2000/svg" style="background:#161616;">
+                <defs>
+                  <radialGradient id="glow1" cx="55%" cy="35%" r="50%">
+                    <stop offset="0%" stop-color="#e8480a" stop-opacity=".18"/>
+                    <stop offset="100%" stop-color="#e8480a" stop-opacity="0"/>
+                  </radialGradient>
+                </defs>
+                <rect width="580" height="540" fill="url(#glow1)"/>
+                <circle cx="340" cy="195" r="175" fill="none" stroke="#e8480a" stroke-width="1" opacity=".14"/>
+                <circle cx="340" cy="195" r="125" fill="none" stroke="#e8480a" stroke-width="1" opacity=".11"/>
+                <circle cx="340" cy="195" r="75"  fill="none" stroke="#e8480a" stroke-width="1" opacity=".09"/>
+                <path d="M190 410 Q220 370 200 330 Q182 292 212 255" fill="none" stroke="#9ca3af" stroke-width="1.5" opacity=".18"/>
+                <path d="M245 428 Q263 382 250 343 Q237 305 260 268" fill="none" stroke="#9ca3af" stroke-width="1.5" opacity=".14"/>
+                <path d="M295 440 Q305 394 296 357 Q286 320 305 283" fill="none" stroke="#9ca3af" stroke-width="1.5" opacity=".18"/>
+                <rect x="248" y="172" width="88" height="254" rx="7" fill="#1e1e1e" stroke="#e8480a" stroke-width="1.5"/>
+                <rect x="258" y="187" width="68" height="38" rx="3" fill="#141414" stroke="#2a2a2a" stroke-width="1"/>
+                <rect x="263" y="192" width="58" height="26" rx="2" fill="#e8480a" opacity=".13"/>
+                <text x="292" y="210" text-anchor="middle" fill="#e8480a" font-size="7.5" font-family="Bebas Neue,sans-serif" letter-spacing="1" opacity=".9">NEW EDGE</text>
+                <circle cx="292" cy="264" r="17" fill="#1a1a1a" stroke="#e8480a" stroke-width="1.4" opacity=".75"/>
+                <circle cx="292" cy="264" r="9"  fill="#e8480a" opacity=".45"/>
+                <rect x="278" y="298" width="28" height="3.5" rx="1.75" fill="#2e2e2e"/>
+                <rect x="273" y="312" width="38" height="3"   rx="1.5"  fill="#272727"/>
+                <rect x="278" y="325" width="28" height="3"   rx="1.5"  fill="#272727"/>
+                <rect x="0"   y="455" width="580" height="85" fill="#111"/>
+                <text x="38" y="494" fill="#f5f5f0" font-size="26" font-family="Bebas Neue,sans-serif" letter-spacing="3">NEW EDGE SMOKE</text>
+                <text x="38" y="513" fill="#9ca3af" font-size="10" font-family="Barlow,sans-serif" letter-spacing="2">CYPRESS, TX — WEST ROAD</text>
+                <rect x="38" y="522" width="55" height="2" fill="#e8480a"/>
+              </svg>
             </div>
-            <div class="col-sm-6">
-              <ul class="list-unstyled about-icon-list">
-                <li><i class="fas fa-cannabis"></i> CBD products</li>
-                <li><i class="fas fa-spa"></i> Wellness essentials</li>
-                <li><i class="fas fa-tools"></i> Smoking accessories</li>
-                <li><i class="fas fa-star"></i> Trusted brands</li>
-              </ul>
-            </div>
+            <div class="about-frame"></div>
           </div>
-          <p class="mt-3">We emphasize <strong>quality, competitive pricing, and exceptional customer service</strong>. Our knowledgeable team ensures a welcoming and professional shopping experience with carefully selected products from trusted industry brands.</p>
-          <div class="mt-4">
-            <a href="#contact" class="btn btn-primary rounded-pill py-2 px-4"><i class="fas fa-map-pin me-2"></i>Visit our store</a>
+        </div>
+
+        <div class="col-lg-7 reveal-right">
+          <span class="section-label">Our Story</span>
+          <h2 class="section-title">CYPRESS'S <span class="accent">PREMIER</span><br>SMOKE SHOP</h2>
+          <div class="divider"></div>
+          <p style="color:var(--smoke);line-height:1.8;font-size:.96rem;">
+            New Edge Smoke &amp; Vapes is a premier smoke shop located on West Road in Cypress, Houston, Texas, proudly serving the local community with top-quality products and exceptional customer service. We specialize in premium vape devices, disposable vapes, e-liquids, cigars, CBD products, wellness essentials, and a full range of smoking accessories from trusted industry brands.
+          </p>
+          <p style="color:var(--smoke);line-height:1.8;font-size:.96rem;margin-top:1rem;">
+            Our knowledgeable team ensures a welcoming and professional shopping experience with carefully selected products at competitive prices.
+          </p>
+          <ul class="feature-list">
+            <li><i class="bi bi-check2 fi"></i>Premium Vape Devices &amp; Disposable Vapes</li>
+            <li><i class="bi bi-check2 fi"></i>Wide Range of E-Liquids — All Flavors</li>
+            <li><i class="bi bi-check2 fi"></i>Cigars from Trusted Industry Brands</li>
+            <li><i class="bi bi-check2 fi"></i>CBD Products &amp; Wellness Essentials</li>
+            <li><i class="bi bi-check2 fi"></i>Full Smoking Accessories Collection</li>
+            <li><i class="bi bi-check2 fi"></i>Competitive Pricing &amp; Expert Guidance</li>
+          </ul>
+          <a href="#contact" class="btn-ember"><span>Visit Our Store</span></a>
+          <div class="stat-grid">
+            <div class="stat-chip"><div class="stat-num">500+</div><div class="stat-text">Products</div></div>
+            <div class="stat-chip"><div class="stat-num">100%</div><div class="stat-text">Authentic</div></div>
+            <div class="stat-chip"><div class="stat-num">Top</div><div class="stat-text">Rated Shop</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       PRODUCTS
+  ══════════════════════════════════════════════ -->
+  <section id="products">
+    <div class="container-xl">
+      <div class="text-center mb-5 reveal">
+        <span class="section-label">What We Offer</span>
+        <h2 class="section-title">OUR <span class="accent">PRODUCTS</span></h2>
+        <div class="divider mx-auto"></div>
+        <p style="color:var(--smoke);max-width:480px;margin:0 auto;font-size:.93rem;line-height:1.8;">From the latest vape technology to classic cigars — we carry the products you love from brands you trust.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-4 reveal"><div class="product-card"><span class="pc-num">01</span><i class="bi bi-cloud-fog2 pc-icon"></i><div class="pc-title">Vape Devices</div><p class="pc-desc">The latest pod systems, box mods, and starter kits from leading manufacturers. Find your perfect device with expert guidance.</p></div></div>
+        <div class="col-sm-6 col-lg-4 reveal" style="transition-delay:.1s"><div class="product-card"><span class="pc-num">02</span><i class="bi bi-battery-charging pc-icon"></i><div class="pc-title">Disposable Vapes</div><p class="pc-desc">Convenient, flavor-packed disposables from top brands. Hundreds of flavors in stock — classics to exotic blends.</p></div></div>
+        <div class="col-sm-6 col-lg-4 reveal" style="transition-delay:.2s"><div class="product-card"><span class="pc-num">03</span><i class="bi bi-droplet-fill pc-icon"></i><div class="pc-title">E-Liquids</div><p class="pc-desc">Massive selection of premium e-liquids in every nicotine level and flavor profile — salt nic, freebase, and more.</p></div></div>
+        <div class="col-sm-6 col-lg-4 reveal" style="transition-delay:.1s"><div class="product-card"><span class="pc-num">04</span><i class="bi bi-fire pc-icon"></i><div class="pc-title">Cigars</div><p class="pc-desc">Handpicked cigars from renowned brands and blends. From mild to full-bodied — something for every palate.</p></div></div>
+        <div class="col-sm-6 col-lg-4 reveal" style="transition-delay:.2s"><div class="product-card"><span class="pc-num">05</span><i class="bi bi-flower1 pc-icon"></i><div class="pc-title">CBD Products</div><p class="pc-desc">Quality CBD oils, gummies, tinctures, and topicals from trusted, lab-tested brands. Natural wellness solutions.</p></div></div>
+        <div class="col-sm-6 col-lg-4 reveal" style="transition-delay:.3s"><div class="product-card"><span class="pc-num">06</span><i class="bi bi-stars pc-icon"></i><div class="pc-title">Accessories</div><p class="pc-desc">Grinders, rolling papers, pipes, lighters, cases, coils, and more — all in one convenient location.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       WHY US
+  ══════════════════════════════════════════════ -->
+  <section id="why">
+    <div class="container-xl">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-4 reveal-left">
+          <span class="section-label">Why New Edge</span>
+          <h2 class="section-title">THE <span class="accent">EDGE</span><br>DIFFERENCE</h2>
+          <div class="divider"></div>
+          <p style="color:var(--smoke);line-height:1.8;font-size:.93rem;">We're not just a store — we're your go-to destination for everything smoke &amp; vape in Cypress, TX.</p>
+          <a href="#contact" class="btn-ember d-inline-block mt-3"><span>Come See Us</span></a>
+        </div>
+        <div class="col-lg-8">
+          <div class="row g-4">
+            <div class="col-sm-6 reveal" style="transition-delay:.05s"><div class="why-card"><div class="wc-icon"><i class="bi bi-shield-check"></i></div><div><div class="wc-title">100% Authentic</div><p class="wc-desc">Every product sourced from authorized distributors — guaranteed authentic, every time.</p></div></div></div>
+            <div class="col-sm-6 reveal" style="transition-delay:.1s"><div class="why-card"><div class="wc-icon"><i class="bi bi-tag"></i></div><div><div class="wc-title">Best Prices</div><p class="wc-desc">We match or beat competitors on price. Premium products without premium markups.</p></div></div></div>
+            <div class="col-sm-6 reveal" style="transition-delay:.15s"><div class="why-card"><div class="wc-icon"><i class="bi bi-person-hearts"></i></div><div><div class="wc-title">Expert Staff</div><p class="wc-desc">Our knowledgeable team guides you to the perfect product for your needs.</p></div></div></div>
+            <div class="col-sm-6 reveal" style="transition-delay:.2s"><div class="why-card"><div class="wc-icon"><i class="bi bi-box-seam"></i></div><div><div class="wc-title">Huge Selection</div><p class="wc-desc">500+ products across all categories — the largest selection in the Cypress area.</p></div></div></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT US SECTION with embedded map & address (exactly as google business) -->
-  <section id="contact" class="section-padding" style="background: #f4f6fa;">
-    <div class="container">
-      <div class="text-center mb-5">
-        <span class="about-badge"><i class="fas fa-address-card me-2"></i>get in touch</span>
-        <h2 class="display-5 fw-semibold">Visit New Edge today</h2>
-        <p class="text-secondary col-lg-6 mx-auto">We're located on West Road, Cypress. Stop by for expert advice and premium products.</p>
+
+  <!-- ══════════════════════════════════════════════
+       CONTACT
+  ══════════════════════════════════════════════ -->
+  <section id="contact">
+    <div class="container-xl">
+      <div class="text-center mb-5 reveal">
+        <span class="section-label">Find Us</span>
+        <h2 class="section-title">COME <span class="accent">VISIT</span> US</h2>
+        <div class="divider mx-auto"></div>
+        <p style="color:var(--smoke);max-width:480px;margin:0 auto;font-size:.93rem;line-height:1.8;">Conveniently located on West Road in Cypress, TX. Stop by and let our team help you find exactly what you're looking for.</p>
       </div>
-      <div class="row gy-4">
-        <!-- left: contact details + icons -->
-        <div class="col-md-5">
-          <div class="contact-card d-flex flex-column">
-            <div class="d-flex align-items-start mb-4">
-              <div class="contact-icon me-3"><i class="fas fa-location-dot"></i></div>
-              <div>
-                <h5>Address</h5>
-                <p class="mb-0 fw-semibold">New Edge Smoke & Vapes<br>West Road, Cypress, TX 77429<br>Houston, Texas</p>
-                <small class="text-secondary">exactly as on Google Business Profile</small>
-              </div>
+      <div class="row g-4 align-items-stretch">
+        <div class="col-lg-4 reveal-left">
+          <div class="contact-card">
+            <div class="contact-item">
+              <div class="ci-icon"><i class="bi bi-geo-alt-fill"></i></div>
+              <div><div class="ci-label">Address</div><div class="ci-value">10011 West Rd, Suite 500<br>Houston, TX 77064</div></div>
             </div>
-            <div class="d-flex align-items-center mb-4">
-              <div class="contact-icon me-3"><i class="fas fa-phone-alt"></i></div>
-              <div>
-                <h5>Phone</h5>
-                <p class="mb-0"><a href="tel:+18324678000" class="text-dark">(832) 467-8000</a></p>
-              </div>
+            <div class="contact-item">
+              <div class="ci-icon"><i class="bi bi-telephone-fill"></i></div>
+              <div><div class="ci-label">Phone</div><a href="tel:+12815550100" class="ci-value">(281) 555-0100</a></div>
             </div>
-            <div class="d-flex align-items-center mb-4">
-              <div class="contact-icon me-3"><i class="fas fa-envelope"></i></div>
-              <div>
-                <h5>Email</h5>
-                <p class="mb-0"><a href="mailto:hello@newedgesmoke.com" class="text-dark">hello@newedgesmoke.com</a></p>
-              </div>
+            <div class="contact-item">
+              <div class="ci-icon"><i class="bi bi-envelope-fill"></i></div>
+              <div><div class="ci-label">Email</div><a href="mailto:info@newedgesmoke.com" class="ci-value">info@newedgesmoke.com</a></div>
             </div>
-            <div class="d-flex align-items-center">
-              <div class="contact-icon me-3"><i class="fas fa-clock"></i></div>
-              <div>
-                <h5>Hours</h5>
-                <p class="mb-0">Mon-Sat: 10am – 9pm<br>Sunday: 11am – 6pm</p>
+            <div class="contact-item">
+              <div class="ci-icon"><i class="bi bi-clock-fill"></i></div>
+              <div><div class="ci-label">Hours</div><div class="ci-value">Mon–Sat: 9AM – 9PM<br>Sunday: 10AM – 7PM</div></div>
+            </div>
+            <div class="mt-4">
+              <div class="ci-label mb-2">Follow Us</div>
+              <div class="social-row">
+                <a href="https://www.instagram.com/newedgewest/"  target="_blank" rel="noopener" class="social-btn" title="Instagram"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.facebook.com/newedgewest"    target="_blank" rel="noopener" class="social-btn" title="Facebook"><i class="bi bi-facebook"></i></a>
+                <a href="https://www.tiktok.com/newedgewest"      target="_blank" rel="noopener" class="social-btn" title="TikTok"><i class="bi bi-tiktok"></i></a>
+                <a href="https://www.x.com/newedgewest"           target="_blank" rel="noopener" class="social-btn" title="X / Twitter"><i class="bi bi-twitter-x"></i></a>
               </div>
             </div>
           </div>
         </div>
-        <!-- right: google map embed (pinned) -->
-        <div class="col-md-7">
-          <div class="contact-card p-0 overflow-hidden">
-            <div class="map-container" style="border-radius: 28px;">
-              <!-- Google Map embedded with pinned location (Cypress, West Rd area) -->
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110446.14724797852!2d-95.66906945!3d29.96938145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640b13e6c9f8f2f%3A0x41cf1f5f6d94d0b4!2sWest%20Rd%2C%20Cypress%2C%20TX!5e0!3m2!1sen!2sus!4v1710100000000!5m2!1sen!2sus" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+        <div class="col-lg-8 reveal-right">
+          <div class="map-wrap">
+            <span class="map-label">NEW EDGE SMOKE &amp; VAPES</span>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3459.2!2d-95.6170!3d29.9270!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDU1JzM3LjIiTiA5NcKwMzcnMDEuMiJX!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="New Edge Smoke & Vapes Location"></iframe>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER (dark modern style with social icons & copyright) -->
-  <footer class="footer-dark py-5">
-    <div class="container">
-      <div class="row gy-4 align-items-center">
-        <div class="col-md-6">
-          <h4 class="text-white fw-semibold"><i class="fas fa-leaf me-2" style="color:#b48b45;"></i>New Edge Smoke & Vapes</h4>
-          <p class="text-secondary-light mt-3" style="max-width: 340px;">Premium products, competitive prices, and genuine customer care — your Cypress smoke shop.</p>
-        </div>
-        <div class="col-md-6 text-md-end">
-          <div class="footer-social">
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-            <a href="#" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+
+  <!-- ══════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════ -->
+  <footer>
+    <div class="container-xl">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <div class="footer-brand">NEW EDGE <span>SMOKE</span></div>
+          <p class="footer-tagline">Premier Smoke &amp; Vape Shop — West Road, Cypress TX</p>
+          <div class="social-row mt-3">
+            <a href="https://www.instagram.com/newedgewest/"  target="_blank" rel="noopener" class="social-btn" title="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.facebook.com/newedgewest"    target="_blank" rel="noopener" class="social-btn" title="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.tiktok.com/newedgewest"      target="_blank" rel="noopener" class="social-btn" title="TikTok"><i class="bi bi-tiktok"></i></a>
+            <a href="https://www.x.com/newedgewest"           target="_blank" rel="noopener" class="social-btn" title="X / Twitter"><i class="bi bi-twitter-x"></i></a>
           </div>
         </div>
+        <div class="col-sm-6 col-lg-2">
+          <div class="footer-heading">Navigate</div>
+          <a href="#hero"     class="footer-link">Home</a>
+          <a href="#about"    class="footer-link">About Us</a>
+          <a href="#products" class="footer-link">Products</a>
+          <a href="#why"      class="footer-link">Why Us</a>
+          <a href="#contact"  class="footer-link">Contact</a>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="footer-heading">Products</div>
+          <a href="#products" class="footer-link">Vape Devices</a>
+          <a href="#products" class="footer-link">Disposable Vapes</a>
+          <a href="#products" class="footer-link">E-Liquids</a>
+          <a href="#products" class="footer-link">Cigars</a>
+          <a href="#products" class="footer-link">CBD &amp; Wellness</a>
+          <a href="#products" class="footer-link">Accessories</a>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-heading">Visit Us</div>
+          <p style="color:var(--smoke);font-size:.87rem;line-height:1.9;">
+            10011 West Rd, Suite 500<br>Houston, TX 77064<br><br>
+            Sun–Thu: 9AM – 10PM<br>Fri-Sat: 9AM – 11PM
+          </p>
+        </div>
       </div>
-      <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center">
-        <span>© 2025 New Edge Smoke & Vapes. All rights reserved.</span>
-        <span class="mt-2 mt-md-0"><a href="#" class="text-secondary text-decoration-none">Privacy</a> | <a href="#" class="text-secondary text-decoration-none">Terms</a></span>
+      <hr class="footer-divider" />
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <p class="footer-copy mb-0">&copy; 2025 New Edge Smoke &amp; Vapes. All rights reserved.</p>
+        <p class="footer-copy mb-0">Proudly serving <a href="#hero">Cypress, TX</a></p>
       </div>
     </div>
   </footer>
 
-  <!-- Bootstrap JS bundle for interactive components (carousel, navbar toggler) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- (lightweight, no extra dependencies) -->
+  <!-- Back to top -->
+  <button id="btt" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+
+  <!-- Bootstrap JS (navbar collapse only — no carousel used) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+  /* ════════════════════════════════════════════════
+     CUSTOM HERO SLIDER
+     Uses CSS translateX on the track — zero Bootstrap
+     carousel involvement, no display:block conflicts.
+  ════════════════════════════════════════════════ */
+  (function () {
+    const track   = document.getElementById('heroTrack');
+    const slides  = Array.from(track.querySelectorAll('.hero-slide'));
+    const dots    = Array.from(document.querySelectorAll('.hero-dot'));
+    const btnPrev = document.getElementById('heroPrev');
+    const btnNext = document.getElementById('heroNext');
+    const TOTAL   = slides.length;
+    const STEP    = 100 / TOTAL;   // % per slide = 33.333...
+    let   cur     = 0;
+    let   ticker  = null;
+
+    function goTo(idx) {
+      if (idx < 0)      idx = TOTAL - 1;
+      if (idx >= TOTAL) idx = 0;
+
+      slides[cur].classList.remove('is-active');
+      dots[cur].classList.remove('is-active');
+
+      cur = idx;
+      track.style.transform = `translateX(-${STEP * cur}%)`;
+
+      slides[cur].classList.add('is-active');
+      dots[cur].classList.add('is-active');
+    }
+
+    function autoStart() {
+      clearInterval(ticker);
+      ticker = setInterval(() => goTo(cur + 1), 5500);
+    }
+
+    btnPrev.addEventListener('click', () => { goTo(cur - 1); autoStart(); });
+    btnNext.addEventListener('click', () => { goTo(cur + 1); autoStart(); });
+
+    dots.forEach(d => d.addEventListener('click', () => {
+      goTo(parseInt(d.dataset.slide, 10)); autoStart();
+    }));
+
+    // Touch swipe
+    let tx = 0;
+    track.addEventListener('touchstart', e => { tx = e.changedTouches[0].screenX; }, { passive: true });
+    track.addEventListener('touchend',   e => {
+      const dx = tx - e.changedTouches[0].screenX;
+      if (Math.abs(dx) > 44) { goTo(dx > 0 ? cur + 1 : cur - 1); autoStart(); }
+    });
+
+    // Pause on hover
+    track.addEventListener('mouseenter', () => clearInterval(ticker));
+    track.addEventListener('mouseleave', autoStart);
+
+    // Keyboard
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft')  { goTo(cur - 1); autoStart(); }
+      if (e.key === 'ArrowRight') { goTo(cur + 1); autoStart(); }
+    });
+
+    autoStart();
+  })();
+
+  /* ════════════════════════════════════════════════
+     NAVBAR SCROLL
+  ════════════════════════════════════════════════ */
+  const nav = document.getElementById('mainNav');
+  const btt = document.getElementById('btt');
+  window.addEventListener('scroll', () => {
+    const s = window.scrollY > 60;
+    nav.classList.toggle('scrolled', s);
+    btt.classList.toggle('show', s);
+  }, { passive: true });
+  btt.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
+
+  /* ════════════════════════════════════════════════
+     SCROLL REVEAL
+  ════════════════════════════════════════════════ */
+  const obs = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => obs.observe(el));
+  </script>
+
 </body>
 </html>
